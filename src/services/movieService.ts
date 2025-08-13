@@ -12,7 +12,7 @@ interface DBRespons {
   results: Movie[];
 }
 
-export const getMovie = async (query: string): Promise<Movie[]> => {
+export const getMovies = async (query: string): Promise<Movie[]> => {
   const { data } = await axios.get<DBRespons>(`search/movie`, {
     params: { query },
   });

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import type { Movie } from '../../types/movie';
-import { getMovie } from '../../services/movieService';
+import { getMovies } from '../../services/movieService';
 
 import MovieGrid from '../MovieGrid/MovieGrid';
 import MovieModal from '../MovieModal/MovieModal';
@@ -23,8 +23,8 @@ function App() {
     setIsError(false);
 
     try {
-      const data = await getMovie(value);
-      console.log('Movies from API:', data);
+      const data = await getMovies(value);
+      // console.log('Movies from API:', data);
       if (!data.length) {
         setIsEmpty(true);
         // toast.error('No movies found for your request.');
@@ -45,7 +45,7 @@ function App() {
   };
   return (
     <>
-      <SearchBar handleSubmit={handleSubmit} />
+      <SearchBar onSubmit={handleSubmit} />
 
       {movie.length > 0 && (
         <MovieGrid onSelect={handleMovieClick} movies={movie} />
